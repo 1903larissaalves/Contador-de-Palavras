@@ -15,3 +15,15 @@ campo.on("input", function(){
     $("#contadorCaracteres").text(quantidadeCaracteres);
 
 });
+
+var tempoRestante = $("#tempoDigitacao").text();
+campo.one("focus", function(){
+    var cronometro = setInterval(function(){
+        tempoRestante--;
+        $("#tempoDigitacao").text(tempoRestante);
+        if(tempoRestante < 1){
+            campo.attr("disabled", true);
+            clearInterval(cronometro);
+        }
+    },1000);
+});
