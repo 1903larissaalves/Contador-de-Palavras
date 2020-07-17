@@ -40,8 +40,8 @@ function cronometro() {
         if(tempoRestante < 1){
             campo.attr("disabled", true);
             clearInterval(cronometro);
-            campo.addClass("campo-desativado");
-            //campo.toggleClass("campo-desativado"); --faz o add class e remove
+            //campo.addClass("campo-desativado");
+            campo.toggleClass("campo-desativado"); //--faz o add class e remove
         }
     },1000);
 
@@ -55,4 +55,5 @@ function reiniciarJogo() {
     $("#contadorCaracteres").text("0");
     $("#tempoDigitacao").text(tempoInicial);
     cronometro();
+    campo.toggleClass("campo-desativado");
 }
