@@ -7,6 +7,7 @@ $(function() {
     atualizaTamanhoFrase();
     $("#reiniciar").click(reiniciarJogo);
     verificaFrase();
+    removePlacar();
 });
 
 
@@ -68,14 +69,24 @@ function inserePlacar() {
     var placar = $("#placar");
     var corpoTabela = placar.find("tbody");
     var usuario = "Larissa";
+    var remover = "<a href='#'><i class='small material-icons'>delete</i></a>"
     var numeroPalavras = $("#contadorPalavras").text();
 
     var linha = "<tr>" + 
                         "<td>" + usuario + "</td>" +
                         "<td>" + numeroPalavras + "</td>" + 
+                        "<td>" + remover + "</td>" + 
                "</tr>"
 
     corpoTabela.prepend(linha);
+}
+
+function removePlacar(){
+    var deletar = $(".remove");
+    deletar.on("click",function(){
+    event.preventDefault();
+    $(this).parent().parent().remove();
+    });
 }
 
 function reiniciarJogo() {
