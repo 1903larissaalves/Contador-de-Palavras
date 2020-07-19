@@ -72,17 +72,31 @@ function inserePlacar() {
     var remover = "<a href='#'><i class='small material-icons'>delete</i></a>"
     var numeroPalavras = $("#contadorPalavras").text();
 
-    var linha = "<tr>" + 
-                        "<td>" + usuario + "</td>" +
-                        "<td>" + numeroPalavras + "</td>" + 
-                        "<td>" + remover + "</td>" + 
-               "</tr>"
-
+    var linha = novaLinha(usuario, numeroPalavras);
+    linha.find(".botao-remover").click(removePlacar);
     corpoTabela.prepend(linha);
 }
 
+function novaLinha(nome, palavras){
+    var linha = $("<tr>");
+    var colunaNome = $("<td>").text(nome);
+    var colunaPalavras = $("<td>").text(palavras);
+    var colunaRemover = $("<td>");
+    var link = $("<a>").attr("href", "#").addClass("botao-remover");
+    var icone = $("<i>").addClass("small").addClass("material-icons").text("delete");
+
+    link.append(icone);
+    colunaRemover.append(link);
+    
+    linha.append(colunaNome);
+    linha.append(colunaPalavras);
+    linha.append(colunaRemover);
+
+    return linha;
+}
+
 function removePlacar(){
-    var deletar = $(".remove");
+    var deletar = $(".botao-remover");
     deletar.on("click",function(){
     event.preventDefault();
     $(this).parent().parent().remove();
