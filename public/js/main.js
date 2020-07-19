@@ -43,6 +43,7 @@ function cronometro() {
             clearInterval(cronometro);
             //campo.addClass("campo-desativado");
             campo.toggleClass("campo-desativado"); //--faz o add class e remove
+            inserePlacar();
         }
     },1000);
 
@@ -62,6 +63,19 @@ function verificaFrase(){
             campo.removeClass("borda-verde");
         }
     });
+}
+function inserePlacar() {
+    var placar = $("#placar");
+    var corpoTabela = placar.find("tbody");
+    var usuario = "Larissa";
+    var numeroPalavras = $("#contadorPalavras").text();
+
+    var linha = "<tr>" + 
+                        "<td>" + usuario + "</td>" +
+                        "<td>" + numeroPalavras + "</td>" + 
+               "</tr>"
+
+    corpoTabela.prepend(linha);
 }
 
 function reiniciarJogo() {
